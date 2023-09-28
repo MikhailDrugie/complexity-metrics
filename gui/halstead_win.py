@@ -32,3 +32,9 @@ class MainWindow(AbstractWindow):
 
         self.set_layout()
 
+    def _calculate(self) -> None:
+        if not self._file_select_validate():
+            self._file_not_selected_msg()
+            return
+        with open(self.selected_file[0]) as code_file:
+            code = code_file.read()
