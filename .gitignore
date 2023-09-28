@@ -1,0 +1,6 @@
+.idea
+Classes/__pycache__
+Factory/__pycache__
+GUI/__pycache__
+Helper/__pycache__
+test.py
