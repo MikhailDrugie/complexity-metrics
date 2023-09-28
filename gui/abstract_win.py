@@ -1,3 +1,5 @@
+from metrics import AbstractMetrics
+from factories.abstract import AbstractFactory
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QMainWindow,
@@ -29,7 +31,7 @@ class AbstractWindow(QMainWindow):
     }
     __selected_file: list = []
     lang: str = __languages[list(__languages.keys())[0]]
-    _factory = None
+    _factory: AbstractFactory | None = None
 
     def __init__(self, app_name: str = "Abstract App"):
         super(AbstractWindow, self).__init__()
@@ -87,12 +89,18 @@ class AbstractWindow(QMainWindow):
             code = code_file.read()
             code_file.close()
 
-        # todo: factory assignment
-        if not self._factory:
+        if not self._factory:  # todo: error catch and display!
             print('ok\n-------------------------------------')
             print(code)
             return
-        singleton = self._factory.get_instance(self.lang)(code=code)
+
+        classname = self._factory.get_class(self.lang)
+        if classname is None:  # todo: error catch and display!
+            print(f"Unknown class for lang {self.lang}!")
+            return
+
+        singleton: AbstractMetrics = classname(code=code)
+
         data = singleton.execute()
         print(data)
 
