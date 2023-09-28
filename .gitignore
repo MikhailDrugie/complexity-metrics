@@ -1,7 +1,9 @@
 .idea
-classes/__pycache__
-classes/abstract/__pycache__
+metrics/__pycache__
+metrics/halstead/__pycache__
+metrics/mccabe/__pycache__
 factories/__pycache__
+factories/abstract/__pycache__
 gui/__pycache__
 helper/__pycache__
 test.py

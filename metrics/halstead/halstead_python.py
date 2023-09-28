@@ -1,4 +1,4 @@
-from .abstract import AbstractHalstead
+from . import AbstractHalstead
 
 
 class PythonHalstead(AbstractHalstead):
