@@ -6,7 +6,8 @@ from PyQt6.QtWidgets import (
     QGridLayout,
     QWidget,
     QFileDialog,
-    QInputDialog
+    QInputDialog,
+    QMessageBox
 )
 
 
@@ -20,6 +21,7 @@ class AbstractWindow(QMainWindow):
         "php": "PHP (*.php)",
         # todo: more?
     }
+    _factory = None  # todo
     selected_file = []
 
     def __init__(self, app_name: str = "Abstract App", lang: str = "py"):
@@ -33,6 +35,16 @@ class AbstractWindow(QMainWindow):
         """:raise ValueError:"""
         if lang not in self.__filetypes.keys():
             raise ValueError(f"Incorrect language shortname: {lang}")
+
+    def _file_select_validate(self) -> bool:
+        return len(self.selected_file) > 0
+
+    def _file_not_selected_msg(self) -> None:
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle('Warning!')
+        msg_box.setIcon(QMessageBox.Icon.Warning)
+        msg_box.setText("No file selected for estimation! Please, select a file.")
+        msg_box.exec()
 
     def _select_file(self) -> None:
         file_widget = QFileDialog(self)

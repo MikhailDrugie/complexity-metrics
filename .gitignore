@@ -1,8 +1,8 @@
 .idea
-Classes/__pycache__
-Classes/Abstract/__pycache__
-Factory/__pycache__
-GUI/__pycache__
-Helper/__pycache__
+classes/__pycache__
+classes/abstract/__pycache__
+factories/__pycache__
+gui/__pycache__
+helper/__pycache__
 test.py
-Code_Files
+code_files
