@@ -50,7 +50,7 @@ class AbstractWindow(QMainWindow):
         filepath_box.setOption(QInputDialog.InputDialogOption.NoButtons)
         filepath_box.setLabelText(None)
         filepath_box.setTextValue(''.join(self.selected_file))
-        self.layout.addWidget(filepath_box, 1, 0, alignment=Qt.AlignmentFlag.AlignTop)
+        self.layout.addWidget(filepath_box, 1, 0)
 
     def _calculate(self) -> None:
         """Kinda abstract method OwO"""
@@ -59,7 +59,7 @@ class AbstractWindow(QMainWindow):
     def set_select_file(self):
         select_file_btn = QPushButton("Select the file")
         select_file_btn.clicked.connect(self._select_file)
-        self.layout.addWidget(select_file_btn, 2, 0, alignment=Qt.AlignmentFlag.AlignJustify)
+        self.layout.addWidget(select_file_btn, 2, 0)
 
     def set_calculate(self):
         calculate_btn = QPushButton("Estimate metrics!")
@@ -68,7 +68,7 @@ class AbstractWindow(QMainWindow):
         font.setPointSize(12)
         calculate_btn.setFont(font)
         calculate_btn.clicked.connect(self._calculate)
-        self.layout.addWidget(calculate_btn, 1, 1, alignment=Qt.AlignmentFlag.AlignJustify)
+        self.layout.addWidget(calculate_btn, 1, 1)
 
     def set_layout(self) -> None:
         """Sets the final app layout"""
