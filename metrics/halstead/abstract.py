@@ -1,26 +1,48 @@
+import re
+from helper import Patterns
 from ..abstract import AbstractMetrics
 
 
 class AbstractHalstead(AbstractMetrics):
+    language_operators: dict = {}
 
-    language_operators = []
+    statement_separator: str | None = None
 
     # η1
     operators: dict = {}
     # η2
     operands: dict = {}
 
-    def __init__(self, code: str):
+    def __init__(self, code: str, count_func_call: bool = False):
         super().__init__(code)
+        self.count_func_call = count_func_call
+
+    def _get_code_statements(self):
+        if not self.statement_separator:
+            raise ValueError("Statement separator is not assigned!")
+        return self.code.strip().split(self.statement_separator)
+
+    def _get_operators(self):
+        for operator_type, operators in self.language_operators.items():
+            for operator in operators:
+                pattern = Patterns.get_pattern(operator_type, operator)
+                amount = len(re.findall(pattern, self.code))
+                if amount > 0:
+                    self.operators[operator] = amount
 
     def parse_code(self) -> None:
         """
         parses {code} and fills up {operators} and {operands}
         """
+        self._get_operators()
         pass
 
     def execute(self) -> dict:
-        return {'code_lines': self.code.strip().split('\n')}
+        self.parse_code()
+        return {
+            'statements': self._get_code_statements(),
+            'operators': self.operators
+        }
         pass
 
     '''

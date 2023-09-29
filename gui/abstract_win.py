@@ -102,7 +102,8 @@ class AbstractWindow(QMainWindow):
         singleton: AbstractMetrics = classname(code=code)
 
         data = singleton.execute()
-        print(data)
+        for k, v in data.items():
+            print(f"{k}: {v}")
 
     def set_select_language(self):
         dropdown = QComboBox()
