@@ -13,7 +13,7 @@ class PythonHalstead(AbstractHalstead):
             'bit': ['&', '|', '^', '~', '<<', '>>'],
             'loop': ['for', 'while'],
             'condition': ['if', 'elif', 'else'],
-            'func': ['def', 'async def'],
+            'func': ['def', 'async def', 'lambda'],
             'class': ['class'],
             'return': ['return', 'yield', 'await'],
             'import': ['import']

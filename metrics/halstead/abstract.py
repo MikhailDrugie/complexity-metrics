@@ -27,8 +27,8 @@ class AbstractHalstead(AbstractMetrics):
                 pattern = self.pattern_generator.get_pattern(operator_type, operator)
                 matches = re.findall(pattern, self.code, re.MULTILINE)
                 amount = len([match[0] for match in matches if match[0]])
-                if amount > 0:
-                    self.operators[operator] = amount
+                self.operators[operator] = amount if amount > 0 else None
+        self.operators = {key: value for key, value in self.operators.items() if value}
 
     def _get_operands(self):
         pass
@@ -46,7 +46,10 @@ class AbstractHalstead(AbstractMetrics):
             'statements': self._get_code_statements(),
             'operators': self.operators
         }
-        pass
+
+    def clear(self):
+        self.operators = {}
+        self.operands = {}
 
     '''
     Число уникальных операторов (n1):
