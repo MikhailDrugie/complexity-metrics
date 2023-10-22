@@ -1,6 +1,5 @@
 from metrics import AbstractMetrics
-from factories.abstract import AbstractFactory
-from PyQt6.QtCore import Qt
+from common.factories import AbstractFactory
 from PyQt6.QtWidgets import (
     QMainWindow,
     QPushButton,

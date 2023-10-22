@@ -1,4 +1,4 @@
 from .abstract import AbstractHalstead
-from .halstead_python import PythonHalstead
-from .halstead_php import PhpHalstead
-from .halstead_cs import CsharpHalstead
+from .python_halstead import PythonHalstead
+from .php_halstead import PhpHalstead
+from .cs_halstead import CsharpHalstead

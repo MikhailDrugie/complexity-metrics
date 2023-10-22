@@ -1,11 +1,11 @@
-from . import special_symbol_pattern, letters_pattern
+from abc import ABC, abstractmethod
 
 
-class Patterns:
-    arith = special_symbol_pattern
-    compare = special_symbol_pattern
-    assign = special_symbol_pattern
-    bit = special_symbol_pattern
+def letters_pattern(_str: str) -> str:
+    return rf'\b{_str}\b'
+
+
+class AbstractPatterns(ABC):
     other = letters_pattern
 
     @classmethod

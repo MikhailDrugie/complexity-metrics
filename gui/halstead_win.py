@@ -1,5 +1,5 @@
 from . import AbstractWindow
-from factories import HalsteadFactory
+from metrics_factories import HalsteadFactory
 
 
 class MainWindow(AbstractWindow):
