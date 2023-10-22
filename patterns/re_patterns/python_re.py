@@ -25,3 +25,15 @@ def special_symbol_pattern(_str: str) -> str:
 
 def letters_pattern(_str: str) -> str:
     return combined_pattern(rf'\b{_str}\b')
+
+
+def logic_pattern(_str: str) -> str:
+    patterns = {
+        'is': r'\bis(?!\s+not\b)\b',
+        'not': r'(?<!\bis\s)\bnot(?!\s+in)\b',
+        'in': r'(?<!\bnot\s)\bin\b',
+        'is not': r'\bis\s+not\b',
+        'not in': r'\bnot\s+in\b'
+    }
+    pattern = patterns[_str] if _str in patterns.keys() else rf'\b{_str}\b'
+    return combined_pattern(pattern)
