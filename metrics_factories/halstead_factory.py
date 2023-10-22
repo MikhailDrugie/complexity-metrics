@@ -1,4 +1,4 @@
-from . import AbstractFactory
+from common.factories import AbstractFactory
 from . import HalsteadEnum
 
 

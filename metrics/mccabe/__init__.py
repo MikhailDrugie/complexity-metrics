@@ -1,4 +1,4 @@
 from .abstract import AbstractMcCabe
-from .mccabe_python import PythonMcCabe
-from .mccabe_php import PhpMcCabe
-from .mccabe_cs import CsharpMcCabe
+from .python_mccabe import PythonMcCabe
+from .php_mccabe import PhpMcCabe
+from .cs_mccabe import CsharpMcCabe

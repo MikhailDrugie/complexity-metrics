@@ -1,5 +1,4 @@
 import re
-from helper import Patterns
 from ..abstract import AbstractMetrics
 
 
@@ -13,8 +12,8 @@ class AbstractHalstead(AbstractMetrics):
     # η2
     operands: dict = {}
 
-    def __init__(self, code: str, count_func_call: bool = False):
-        super().__init__(code)
+    def __init__(self, code: str, count_func_call: bool = False, language: str | None = None):
+        super().__init__(code, language)
         self.count_func_call = count_func_call
 
     def _get_code_statements(self):
@@ -25,10 +24,14 @@ class AbstractHalstead(AbstractMetrics):
     def _get_operators(self):
         for operator_type, operators in self.language_operators.items():
             for operator in operators:
-                pattern = Patterns.get_pattern(operator_type, operator)
-                amount = len(re.findall(pattern, self.code))
+                pattern = self.pattern_generator.get_pattern(operator_type, operator)
+                matches = re.findall(pattern, self.code, re.MULTILINE)
+                amount = len([match[0] for match in matches if match[0]])
                 if amount > 0:
                     self.operators[operator] = amount
+
+    def _get_operands(self):
+        pass
 
     def parse_code(self) -> None:
         """
