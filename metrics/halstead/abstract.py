@@ -4,13 +4,17 @@ from ..abstract import AbstractMetrics
 
 class AbstractHalstead(AbstractMetrics):
     language_operators: dict = {}
+    language_datatypes: list = []
 
     statement_separator: str | None = None
 
     # η1
     operators: dict = {}
     # η2
-    operands: dict = {}
+    operands: dict = {
+        'const': {},
+        'var': {}
+    }
 
     def __init__(self, code: str, count_func_call: bool = False, language: str | None = None):
         super().__init__(code, language)
@@ -31,6 +35,11 @@ class AbstractHalstead(AbstractMetrics):
         self.operators = {key: value for key, value in self.operators.items() if value}
 
     def _get_operands(self):
+        """Operands implementation in child classes"""
+        pass
+
+    def __traverse(self, *args, **kwargs):
+        """Traverse parsed code nodes for operands via external packages"""
         pass
 
     def parse_code(self) -> None:
@@ -38,13 +47,15 @@ class AbstractHalstead(AbstractMetrics):
         parses {code} and fills up {operators} and {operands}
         """
         self._get_operators()
+        self._get_operands()
         pass
 
     def execute(self) -> dict:
         self.parse_code()
         return {
             'statements': self._get_code_statements(),
-            'operators': self.operators
+            'operators': self.operators,
+            'operands': self.operands
         }
 
     def clear(self):
