@@ -7,4 +7,4 @@ class PythonPatterns(AbstractPatterns):
     compare = py_re.special_symbol_pattern
     assign = py_re.special_symbol_pattern
     bit = py_re.special_symbol_pattern
-    logic = py_re.logic_pattern  # todo: own pattern
+    logic = py_re.logic_pattern
