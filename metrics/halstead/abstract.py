@@ -57,8 +57,6 @@ class AbstractHalstead(AbstractMetrics):
     b = None
     s_t = 10
 
-
-
     def __init__(self, code: str, count_func_call: bool = False, language: str | None = None):
         super().__init__(code, language)
         self.count_func_call = count_func_call
