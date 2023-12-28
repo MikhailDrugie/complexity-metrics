@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import (
     QFileDialog,
     QInputDialog,
     QComboBox,
-    QMessageBox, QTableWidget
+    QMessageBox, QTableWidget, QTextEdit
 )
 
 
@@ -100,8 +100,10 @@ class AbstractWindow(QMainWindow):
             return
 
         singleton: AbstractMetrics = classname(code=code)
-
+        data = singleton.execute()
         self.set_data_table(singleton.execute())
+        general_data = self.get_general_info(data)
+        self.set_general_info(general_data)
 
     def set_select_language(self):
         dropdown = QComboBox()
@@ -132,11 +134,20 @@ class AbstractWindow(QMainWindow):
         table_widget = QTableWidget(self)
         table_widget.verticalHeader().setVisible(False)
         table_widget.horizontalHeader().setVisible(False)
-        self.layout.addWidget(table_widget)
+        self.layout.addWidget(table_widget, 3, 0)
         self.populate_table(table_widget, data)
 
     def populate_table(self, table_widget: QTableWidget, data: dict):
         pass
+
+    def get_general_info(self, data: dict) -> dict:
+        pass
+
+    def set_general_info(self, data: dict):
+        textbox = QTextEdit(self)
+        textbox.setReadOnly(True)
+        textbox.setText('\n'.join([f'{str(k)}: {str(v)}' for k, v in data.items()]))
+        self.layout.addWidget(textbox, 3, 1)
 
     def set_layout(self) -> None:
         """Sets the final app layout"""

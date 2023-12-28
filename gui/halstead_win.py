@@ -62,3 +62,25 @@ class MainWindow(AbstractWindow):
         self.__set_operators_widget(table_widget, data['operators'])
         self.__set_operands_header(table_widget)
         self.__set_operands_widget(table_widget, data['operands'])
+
+    def get_general_info(self, data):
+        return {
+            "Число уникальных операторов (n1)": data['uniq_operators'],
+            "Число уникальных операндов (n2)": data['uniq_operands'],
+            "Общее число операторов (N1)": data['total_operators'],
+            "Общее число операндов (N2)": data['total_operands'],
+            "Алфавит (n)": data['alphabet'],
+            "Экспериментальна длина программы (Nэ)": data['exp_length'],
+            "Теоретическая длина программы (Nт)": data['theo_length'],
+            "Объём программы (V)": data['vol'],
+            "Потенциальный объём (V*)": data['pot_vol'],
+            "Уровень программы (L)": data['lvl'],
+            "Сложность программы (S)": data['soph'],
+            "Ожидание уровня программы (L^)": data['est_lvl'],
+            "Интеллект программы (I)": data['int'],
+            "Работа по программированию (Е)": data['prog_work'],
+            "Время кодирования (T)": data['cod_time'],
+            "Ожидаемое время кодирования (T^)": data['est_cod_time'],
+            "Уровень языка программирования (Lam)": data['prog_lang_lvl'],
+            "Уровень ошибок (В)": data['bug_lvl']
+        }
